@@ -19,8 +19,8 @@ WAP in php to insert data into mysql table
 
     // Insert query
     $sql = "INSERT INTO students (Stud_ID, Stud_Name, Stud_Email, Stud_Contact)
-            VALUES (101, 'Akshay', 'akshay@gmail.com', '1234567890')";
-
+        VALUES (111, 'Akshay', 'akshay.unique111@gmail.com', '1234567890')";
+        
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
@@ -29,6 +29,6 @@ WAP in php to insert data into mysql table
 
     $conn->close();
 
-    echo "<br>This Program is written by Aaryan Goel 0221BCA163";
-
+    echo "<br>";
+    echo "This Program is written by Aaryan Goel 0221BCA163";
 ?>
