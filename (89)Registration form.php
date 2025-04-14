@@ -23,129 +23,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 <head>
     <title>Registration Form</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #e8f0fe; }
-        .container { 
-            max-width: 500px; 
-            margin: 50px auto; 
-            background: #fff; 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
-        }
-        .header { 
-            background: #007BFF; 
-            color: white; 
-            padding: 10px; 
-            text-align: center; 
-            font-size: 18px; 
-            border-radius: 10px 10px 0 0; 
-            position: relative; 
-        }
-        .icons-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .icons-left, .icons-right {
-            display: flex;
-            align-items: center;
-        }
-        .icons-left span {
-            background: #007BFF; 
-            color: white; 
-            padding: 5px 15px; 
-            border-radius: 20px; 
-            font-size: 14px; 
-            font-weight: bold; 
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .icons-right span {
-            display: inline-block;
-            margin: 0 5px;
-            background: #ccc;
-            padding: 5px;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            text-align: center;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        label { margin-top: 10px; display: block; font-weight: bold; }
-        input, select, button {
-            margin-bottom: 10px; 
-            padding: 10px; 
-            width: 100%; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            font-size: 14px; 
-        }
-        button {
-            background: #007BFF; 
-            color: white; 
-            font-weight: bold; 
-            cursor: pointer; 
-        }
-        button.cancel {
-            background: #dc3545; 
-        }
-        table {
-            margin-top: 20px; 
-            width: 100%; 
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px; 
-            border: 1px solid #ccc; 
-            text-align: center;
-        }
-        th {
-            background: #007BFF; 
-            color: white;
-        }
+        body { font-family: Arial, sans-serif; background: #f4f6f8; }
+        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 10px; }
+        label, input, select { display: block; width: 100%; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background: #007BFF; color: white; }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="icons-row">
-        <div class="icons-left">
-            <span class="page-number">Page 1</span>
-        </div>
-        <div class="icons-right">
-            <span title="Minimize">_</span>
-            <span title="Split Screen">||</span>
-            <span title="Close">X</span>
-        </div>
-    </div>
-    <div class="header">Registration Form</div>
+    <h2>Registration Form</h2>
     <form method="POST" action="">
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        
-        <label>Class:</label>
+        <label>Name:</label> <input type="text" name="name" required>
+        <label>Class:</label> 
         <select name="class" required>
             <option value="BCA">BCA</option>
             <option value="BBA">BBA</option>
         </select>
-        
-        <label>Semester:</label>
-        <input type="text" name="sem" required>
-        
-        <label>Gender:</label>
+        <label>Semester:</label> <input type="text" name="sem" required>
+        <label>Gender:</label> 
         <select name="gender" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
+            <option value="Other">Other</option>
         </select>
-        
-        <label>Mobile No:</label>
-        <input type="text" name="mobile_no" required>
-        
+        <label>Mobile No:</label> <input type="text" name="mobile_no" required>
         <button type="submit" name="submit">Submit</button>
-        <button type="button" class="cancel" onclick="window.location.reload();">Cancel</button>
     </form>
     <?php if (isset($msg)) echo "<p>$msg</p>"; ?>
     
-    <h3>Submitted Records</h3>
+    <h2>Submitted Records</h2>
     <?php
     $result = $conn->query("SELECT * FROM students");
     if ($result->num_rows > 0) {
@@ -167,9 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
                   </tr>";
         }
         echo "</table>";
-    } else {
-        echo "<p>No records found.</p>";
-    }
+    } else echo "<p>No records found.</p>";
     ?>
 </div>
 </body>
